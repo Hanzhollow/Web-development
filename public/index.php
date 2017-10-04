@@ -24,7 +24,7 @@ $app = new \Slim\App($settings);
 foreach ($routes as $route) {
 $app->get($route, function (Request $request, Response $response) {
     //$name = $request->getAttribute('name');
-    $response->getBody()->write("login");
+    $response->getBody()->write("login page");
 
     return $response;
 });
