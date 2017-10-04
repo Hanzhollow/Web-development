@@ -13,18 +13,22 @@ if (PHP_SAPI == 'cli-server') {
 }
 
 require __DIR__ . '/../vendor/autoload.php';
+require 'routes.php';
 
 session_start();
 
 // Instantiate the app
 $settings = require __DIR__ . '/../src/settings.php';
 $app = new \Slim\App($settings);
-$app->get('/hello/{name}', function (Request $request, Response $response) {
-    $name = $request->getAttribute('name');
-    $response->getBody()->write("Hello, $name");
+
+foreach ($routes as $route) {
+$app->get($route, function (Request $request, Response $response) {
+    //$name = $request->getAttribute('name');
+    $response->getBody()->write("login");
 
     return $response;
 });
+}
 // Set up dependencies
 require __DIR__ . '/../src/dependencies.php';
 
